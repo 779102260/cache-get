@@ -28,14 +28,14 @@ Vue.prototype.$cacheHttp = cacheGet ;
 
 #### api
 
-1. **`set([config])`**
+1 . **`set([config])`**
 
 配置插件，配置项如下：
 
 - `overTime: [number]` 过期时间，毫秒，默认24小时
 - `maxCache: [number]` 最大缓存数量，默认1000 （大于此值将会清空所有缓存）
 
-2. **`get(api, [conf])`**
+2 . **`get(api, [conf])`**
 
 发送get请求。
 
@@ -43,14 +43,14 @@ Vue.prototype.$cacheHttp = cacheGet ;
 - `conf: [overTime|flag|axiosConfig]` 配置项
   `flag`指此次请求的标记，`axiosConfig`指本次请求axios的配置项
 
-3. **`remove([api], [flag])`**
+3 . **`remove([api], [flag])`**
 
 根据api和flag删除指定缓存，2个参数都不填时为清空所有缓存
 
-4. **`removeByFlag([flag])`**
+4 . **`removeByFlag([flag])`**
 
 根据flag删除指定缓存
 
-5. **`logCache()`**
+5 . **`logCache()`**
 
 输出缓存，用于调试
