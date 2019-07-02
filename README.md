@@ -20,10 +20,21 @@ cacheGet.get(url, { params: {x} }).then((res) => {
 
 #### 集成到vue
 
-1. 入口文件引入
+1 . 入口文件引入
+
 ```js
 import cacheGet from 'cache-get';
 Vue.prototype.$cacheHttp = cacheGet ;
+```
+
+2 . 组件内使用
+
+```js
+this.$cacheHttp.get(url, { params: {x} }).then((res) => {
+  // 请求成功
+}).catch((err) => {
+  // 请求失败
+})
 ```
 
 #### api
