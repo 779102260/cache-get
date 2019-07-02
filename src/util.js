@@ -14,5 +14,7 @@ util.getHashCode = (str, caseSensitive) => {
   }
   return  (hash & 0x7FFFFFFF);
 }
-
+util.isObject = (data) => {
+  return Object.prototype.toString.call(data) === '[object Object]'
+}
 export default util;
