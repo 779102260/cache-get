@@ -5,6 +5,7 @@
  */
 import axios from 'axios';
 import util from './util.js';
+import { type } from 'os';
 
 // 插件配置
 let 
@@ -64,11 +65,33 @@ const washStore = () => {
  * @param {*} promise 
  */
 const addToStore = (key, conf, promise) => {
+  // 增加一个管道，将返回数据stringify，getFromStore取出时再parse，避免产生引入
+  const rPromise = promise.then(res => {
+    if (typeof res === 'object') {
+      return JSON.stringify(res)
+    }
+  }).catch(err => {
+    if (typeof error === 'object') {
+      return JSON.stringify(err)
+    }
+  })
   store[key] = {
-    promise,
+    promise: rPromise,
     createTime: new Date().getTime(),
     overTime: conf.overTime
   }
+}
+
+/**
+ * 从缓存中获取数据
+ * @param {*} key 
+ */
+const getFromStore = key => {
+  return store[key].promise.then(data => {
+    return JSON.parse(data)
+  }).catch(err => {
+    return JSON.parse(err)
+  })
 }
 /**
  * 通过axios请求数据，并返回promise
@@ -174,7 +197,7 @@ cacheRequest.get = function(api, conf) {
   // console.log(api, store)
   // 检查是否已缓存
   if (isStoredAndCanUse(myConfig, fetchKey)) {
-    return store[fetchKey].promise;
+    return getFromStore(fetchKey)
   }
   // 正常请求
   const promise = fetchData(api, fetchConfig);
