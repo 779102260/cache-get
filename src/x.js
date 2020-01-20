@@ -5,7 +5,6 @@
  */
 import axios from 'axios';
 import util from './util.js';
-import { type } from 'os';
 
 // 插件配置
 let 
