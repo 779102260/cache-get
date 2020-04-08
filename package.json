@@ -1,6 +1,6 @@
 {
   "name": "cache-get",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Send HTTP get request by this tool, the result will be store in browser memory. The next time the same API is requested, it will be read directly from memory.",
   "main": "dist/cache-get.js",
   "scripts": {
